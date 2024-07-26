@@ -1,21 +1,23 @@
 function! s:SwagGen()
-    let content = '// FuncName     FuncDesc \n'
-              \ . '// @Summary     Summary \n'
-              \ . '// @Description Desc \n'
-              \ . '// @Tags        Tags \n'
-              \ . '// @Accept      json\n'
-              \ . '// @Produce     json\n'
-              \ . '// @Param       1Param     path     string  true "1Pram"\n'
-              \ . '// @Param       2Param     path     string  true "2Pram"\n'
-              \ . '// @Param       3Param     path     integer true "3Pram"\n'
-              \ . '// @Success     200       {object}  Object  "请求成功"\n'
-              \ . '// @Router      Path      [GET]\n'
-
-    let cmd = [
-            \ '!echo',
-            \]
-    let cmd = add(cmd,' ' . content)
-    execute  '.' .  join(cmd)
+  let l:lines = [
+          \ '// FuncName     FuncDesc',
+          \ '// @Summary     Summary',
+          \ '// @Description Desc',
+          \ '// @Tags        Tags',
+          \ '// @Accept      json',
+          \ '// @Produce     json',
+          \ '// @Param       1Param    header   string  true \"3Pram\"',
+          \ '// @Param       2Param    path     integer true \"1Pram\"',
+          \ '// @Param       3Param    query    number  true \"2Pram\"',
+          \ '// @Param       4Param    query    bool    true \"2Pram\"',
+          \ '// @Param       Form      formData integer true \"3Pram\"',
+          \ '// @Param       Body      body     Struct  true \"3Pram\"',
+          \ '// @Success     200       {object} Object  \"请求成功\"',
+          \ '// @Router      Path      [GET]',
+          \ ]
+  for l:line in l:lines
+    silent execute 'put =' . string(l:line)
+  endfor
 
 endfunction
 
